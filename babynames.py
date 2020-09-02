@@ -7,6 +7,8 @@
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
 
+__author__ = "sondos with help from joseph , piero and gabby "
+
 """
 Define the extract_names() function below and change main()
 to call it.
@@ -44,8 +46,28 @@ def extract_names(filename):
     ['2006', 'Aaliyah 91', 'Aaron 57', 'Abagail 895', ...]
     """
     names = []
-    # +++your code here+++
-    return names
+    names_dict = {}
+    with open(filename, 'r') as f:
+        lines = f.read()
+        pattern = re.search(r'Popularity\sin\s(\d\d\d\d)', lines)
+        if not pattern:
+            print("No year found")
+            return None
+        year = pattern.group(1)
+        names.append(year)
+        names_list = re.findall(
+            r'<td>(\d+)</td><td>(\w+)</td><td>(\w+)', lines)
+        for r, m, f in names_list:
+            if m not in names_dict:
+                names_dict[m] = r
+            if f not in names_dict:
+                names_dict[f] = r
+        for n in sorted(names_dict):
+            names.append(f"{n} {names_dict[n]}")
+        return names
+
+
+extract_names("baby1992.html")
 
 
 def create_parser():
@@ -83,6 +105,7 @@ def main(args):
     # or to write the list to a summary file (e.g. `baby1990.html.summary`).
 
     # +++your code here+++
+    # use loop and if there the flag
 
 
 if __name__ == '__main__':
