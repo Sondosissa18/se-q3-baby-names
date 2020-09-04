@@ -3,7 +3,6 @@
 # flake8: noqa
 """
 A Test fixture for babynames.
-
 NOTE: Students should not modify this file.
 """
 __author__ = "madarp"
@@ -90,10 +89,11 @@ class TestBabynames(unittest.TestCase):
         self.assertTrue(
             callable(self.module.extract_names),
             msg="The extract_names function is missing"
-            )
+        )
 
         # Get list of only html files
-        html_file_list = sorted(filter(lambda f: f.endswith('.html'), os.listdir('.')))
+        html_file_list = sorted(
+            filter(lambda f: f.endswith('.html'), os.listdir('.')))
         # Compare each result (actual) list to expected list.
         for f in html_file_list:
             summary_file = os.path.join('tests', f + '.summary')
