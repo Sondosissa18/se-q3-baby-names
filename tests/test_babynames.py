@@ -3,7 +3,6 @@
 # flake8: noqa
 """
 A Test fixture for babynames.
-
 NOTE: Students should not modify this file.
 """
 __author__ = "madarp"
